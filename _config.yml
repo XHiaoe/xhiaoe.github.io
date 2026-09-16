@@ -9,11 +9,11 @@ description: '网安新手的学习记录'
 keywords: AI , CTF
 author: XHiaoe
 language: zh-CN
-timezone: 'Shanghai'
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://XHiaoe
+url: https://xhiaoe.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -97,6 +97,13 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: butterfly #landscape
+
+# Search（hexo-generator-searchdb 插件配置，配合主题的 local_search 使用）
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

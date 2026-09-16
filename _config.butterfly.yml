@@ -40,12 +40,17 @@ subtitle:
     - 欢迎来到我的博客
     - 记录技术与生活
 
-# 本地搜索
+# 搜索（需要插件 hexo-generator-searchdb，站点级参数配在 _config.yml 里）
 search:
-  path: search.xml
-  field: post
-  content: true
-  format: html
+  use: local_search        # 可选 algolia_search / local_search / docsearch，留空则不显示搜索
+  placeholder: 搜索
+  local_search:
+    preload: false         # 页面加载时预加载搜索数据
+    top_n_per_article: 1   # 每篇文章最多显示几条匹配，-1 为全部
+    unescape: false        # 是否把 html 转义还原成可读文本
+    pagination:
+      enable: false
+      hitsPerPage: 8
 
 # 懒加载
 lazyload:
