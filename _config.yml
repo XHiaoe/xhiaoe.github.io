@@ -105,6 +105,25 @@ search:
   content: true
   format: html
 
+# Sitemap（hexo-generator-sitemap，给搜索引擎抓取用）
+sitemap:
+  path: sitemap.xml
+  rel: false
+  tags: true
+  categories: true
+
+# RSS / Atom 订阅（hexo-generator-feed）
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  autodiscovery: true
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
