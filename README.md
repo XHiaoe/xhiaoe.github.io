@@ -261,7 +261,8 @@ sticky: 1     # 排第三
 | `source/_drafts/` | 草稿，不会被发布（还没创建，用 `hexo new draft` 时会自动生成） |
 | `source/img/` | 图片。里面放的东西会被**原样复制**到站点根目录的 `/img/` 下 |
 | `source/images/` | 同上，对应 `/images/`。两个目录只是历史遗留的两种命名习惯 |
-| `source/tags/`、`source/categories/` | 标签页和分类页，**目前还没建**，见[第 11 章](#11-还没做的事) |
+| `source/tags/` | 标签页。`index.md` 的 front-matter 里写了 `type: tags`，主题才知道该渲染成"标签云" |
+| `source/categories/` | 分类页，同理靠 `type: categories` 生效 |
 
 > `source/` 下任何非下划线开头的文件或目录（如图片、PDF、`CNAME`）都会原样复制到站点里。所以图片路径直接写 `/img/xxx.png` 就能访问。
 
@@ -440,13 +441,17 @@ Windows 换行是 CRLF、Linux 是 LF，Git 转换时的一句提示，**不是�
 
 ## 11. 还没做的事
 
-按优先级排列，都是**可选**的，不影响博客正常访问：
+按优先级排列，都是**可选**的，不影响博客正常访问。已完成的事项也记在这里，方便回顾：
 
-### ① 导航栏没有任何菜单项
+### 导航栏菜单 —— 已完成（2026-09-17）
 
-现在站点顶部只有一个站名和搜索按钮，**访客没有办法进入归档页、标签页、分类页**——因为 `_config.butterfly.yml` 里没有 `menu:` 配置。
+`_config.butterfly.yml` 里已加好 `menu:`，并创建了 `source/tags/index.md`（`type: tags`）和 `source/categories/index.md`（`type: categories`）。`/archives/` 由插件自动生成，不用建。
 
-想加的话分两步。先在 `_config.butterfly.yml` 加：
+以后想再加菜单项（比如「关于」），三步：
+
+1. 建页面：`npx hexo new page about`
+2. 编辑 `source/about/index.md` 写内容 —— 这种普通页面**不需要**写 `type` 字段
+3. 在 `_config.butterfly.yml` 的 `menu:` 里加一行，格式是 `名称: 路径 || 图标类名`（图标可以省略）：
 
 ```yaml
 menu:
@@ -454,40 +459,24 @@ menu:
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
+  关于: /about/ || fas fa-heart
 ```
 
-然后创建标签页和分类页（`/archives/` 是自动生成的，不用建）：
+> **标签页/分类页点进去是空的？** 正常的。现在只有一篇没有任何标签的文章，等你在文章 front-matter 里填了 `tags` / `categories`，云标签和分类列表就会自动出现。
 
-```bash
-npx hexo new page tags
-npx hexo new page categories
-```
-
-打开生成的 `source/tags/index.md`，把 front-matter 改成：
-
-```yaml
----
-title: 标签
-date: 2026-09-17 10:00:00
-type: tags
----
-```
-
-`source/categories/index.md` 同理，写 `type: categories`。改完重新构建推送即可。
-
-### ② 4 张图片还没放
+### ① 4 张图片还没放
 
 见[第 9 章](#9-图片资源清单)。
 
-### ③ 仓库名建议改成小写
+### ② 仓库名建议改成小写
 
 `XHiaoe.github.io` → `xhiaoe.github.io`，理由见[第 8 章](#8-上线流程与自查清单)。
 
-### ④ 评论功能还没开
+### ③ 评论功能还没开
 
 `comments.use` 是空的，文章底部没有评论区。想加的话推荐 **Giscus**（免费，基于 GitHub Discussions，不需要备案、不需要服务器），需要你在 GitHub 上给仓库开启 Discussions 权限。
 
-### ⑤ 默认示例文章还在
+### ④ 默认示例文章还在
 
 `source/_posts/hello-world.md` 是 `hexo init` 生成的英文示例，内容对访客没什么用。可以删掉，或者改写成一篇自己的开篇说明。
 

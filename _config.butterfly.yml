@@ -4,6 +4,13 @@ nav:
   display_title: true
   fixed: false
 
+# 导航栏菜单（格式：名称: 路径 || 图标类名）
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+
 # 网站图标
 favicon: /img/favicon.png
 
